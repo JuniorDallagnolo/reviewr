@@ -1,0 +1,108 @@
+/* Layout CSS*/
+.right-button {
+    position: fixed;
+    right: 0;
+    margin-right: 5%;
+}
+
+.left-button {
+    position: fixed;
+    left: 0;
+    margin-left: 5%;
+}
+
+form {
+    margin-top: 1.5rem;
+    border: 2px solid black;
+}
+
+.center{
+    display: table;
+    margin: 0% auto !important;
+}
+
+.page {
+    background: linear-gradient(139deg, #232d2e, #526269, #212329, #0a0a0b);
+    background-size: 800% 800%;
+    animation: animated 29s ease infinite;
+}
+
+@keyframes animated {
+    0% {
+        background-position: 0% 15%
+    }
+    50% {
+        background-position: 100% 86%
+    }
+    100% {
+        background-position: 0% 15%
+    }
+}
+
+.page>.bar+.content, .page>.bar-half+.content {
+    padding: 3.0rem 0.5rem 1rem;
+}
+
+/* CSS for Rating System */
+.star{
+    color: goldenrod;
+    font-size: 2.1rem;
+    padding: 0 0.2rem; /* space out the stars */
+  }
+
+  .star::before{
+    content: '\2606';
+  }
+
+  .star.rated::before{
+    /* the :hover should come first */
+    content: '\2605';
+  }
+
+/* List Page Layout CSS */
+.list-item {
+    border: 1px solid #777;
+    border-radius: 20px 20px;
+    box-shadow: 0 3px 0.7px 1px #777777, 0 -7px rgba(0, 0, 0, 0.4) inset;
+    margin-bottom: 0.5rem;
+}
+
+.list-item p {
+    text-align: center;
+    max-width: 100vw;
+    word-wrap: break-word;
+    color: ghostwhite;
+}
+
+.list-item .action-right {
+    transform: scale(2.5);
+    top: 2.5rem;
+}
+/* Add Review Page CSS */
+input[type="text"] {
+    width: 80vw;
+}
+img.round {
+    margin-top: 5%;
+}
+
+/* Detail Page */
+.card p{
+    text-align: center;
+    max-width: 100vw;
+    word-wrap: break-word;
+}
+
+.card {
+    border-radius: 4px;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 1);
+}
+
+/* Formatting for Overlay */
+.overlay-bars {
+    display: none;
+}
+
+.overlay-bars.active {
+    display: block;
+}

@@ -1,0 +1,73 @@
+/* Layout CSS*/
+.right-button {
+    position: fixed;
+    right: 0;
+    margin-right: 5%;
+}
+
+.left-button {
+    position: fixed;
+    left: 0;
+    margin-left: 5%;
+}
+
+form {
+    margin-top: 1.5rem;
+    border: 2px solid black;
+}
+
+.center{
+    display: table;
+    margin: 5% auto !important;
+}
+
+/* CSS for Rating System */
+.star{
+    color: goldenrod;
+    font-size: 1.0rem;
+    padding: 0 1rem; /* space out the stars */
+  }
+  .star::before{
+    content: '\2606';
+  }
+
+  .star.rated::before{
+    /* the :hover should come first */
+    content: '\2605';
+  }
+
+/* List Page Layout CSS */
+#review-card {
+    margin-left: 4.5%;
+    margin-right: 4.5%;
+}
+.list-item .action-right {
+    transform: scale(2.5);
+}
+
+/* Add Review Page CSS */
+#desc-field {
+    padding: 2%;
+    height: 100%;
+    width: 100%;
+}
+
+#camera-button {
+    display: table;
+    margin: 0 auto;
+    padding-top: 20%;
+}
+
+/* Detail Page */
+#delete-button {
+    padding-left: 78%;
+}
+
+/* Formatting for Overlay */
+.overlay-bars {
+    display: none;
+}
+
+.overlay-bars.active {
+    display: block;
+}

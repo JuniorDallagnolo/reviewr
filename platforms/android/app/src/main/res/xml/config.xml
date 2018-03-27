@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="ca.edumedia.dall0078" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="SaveImage">
+        <param name="android-package" value="com.quiply.cordova.saveimage.SaveImage" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>ReviewR</name>
+    <description>
+        An App that allows you to add and remove reviews with pictures.
+    </description>
+    <author email="dall0078@algonquinlive.com" href="http://dall0078.edumedia.ca">
+        Ernilo Dallagnolo Junior
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="market:*" />
+    <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
+    <icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
+    <icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
+    <icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
+    <icon density="xxhdpi" src="res/icons/android/drawable-xxhdpi-icon.png" />
+    <icon density="xxxhdpi" src="res/icons/android/drawable-xxxhdpi-icon.png" />
+    <preference name="loglevel" value="DEBUG" />
+</widget>
