@@ -12,7 +12,7 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *; 'self' * data: content:; connect-src *;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * 'self' * data: content:; connect-src *;">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -40,25 +40,22 @@
             <span id="js-save" class="right-button">Save</span>
         </header>
         <section class="content">
-            <form>
+            <form onSubmit="return doNothing()">
                 <p class="form-row">
                     <input type="text" id="js-desc" required/>
-                    <label for="js-desc">Description</label>
+                    <label for="js-desc">Title</label>
                 </p>
-                <p class="form-row">
-                    <label>Rating</label>
-                    <div class="stars" data-rating="0">
-                        <span class="star"></span>
-                        <span class="star"></span>
-                        <span class="star"></span>
-                        <span class="star"></span>
-                        <span class="star"></span>
-                    </div>
-                </p>
-                <img src="" id="js-img" width="300" height="300" class="round center"
-                />
+                <div class="stars form-row" data-rating="0">
+                    <label class="center">Rating</label>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                </div>
                 <p class="form-row buttons">
                     <input type="button" id="js-picture" class="btn-small center" value="Take Picture" />
+                    <img src="" id="js-img" class="round center" />
                 </p>
             </form>
         </section>
@@ -80,6 +77,12 @@
             <h1 class="info t3"></h1>
         </section>
     </div>
+
+    <script>
+        function doNothing() {
+            return false;
+        }
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

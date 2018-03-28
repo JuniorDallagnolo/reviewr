@@ -35,7 +35,7 @@
         An App that allows you to add and remove reviews with pictures.
     </description>
     <author email="dall0078@algonquinlive.com" href="http://dall0078.edumedia.ca">
-    Ernilo Dallagnolo Junior
+        Ernilo Dallagnolo Junior
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -47,6 +47,22 @@
     <allow-intent href="geo:*" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
+    <icon height="57" platform="ios" src="res/icons/ios/icon.png" width="57" />
+    <icon height="114" platform="ios" src="res/icons/ios/icon@2x.png" width="114" />
+    <icon height="40" platform="ios" src="res/icons/ios/icon-40.png" width="40" />
+    <icon height="80" platform="ios" src="res/icons/ios/icon-40@2x.png" width="80" />
+    <icon height="50" platform="ios" src="res/icons/ios/icon-50.png" width="50" />
+    <icon height="100" platform="ios" src="res/icons/ios/icon-50@2x.png" width="100" />
+    <icon height="60" platform="ios" src="res/icons/ios/icon-60.png" width="60" />
+    <icon height="120" platform="ios" src="res/icons/ios/icon-60@2x.png" width="120" />
+    <icon height="180" platform="ios" src="res/icons/ios/icon-60@3x.png" width="180" />
+    <icon height="72" platform="ios" src="res/icons/ios/icon-72.png" width="72" />
+    <icon height="144" platform="ios" src="res/icons/ios/icon-72@2x.png" width="144" />
+    <icon height="76" platform="ios" src="res/icons/ios/icon-76.png" width="76" />
+    <icon height="152" platform="ios" src="res/icons/ios/icon-76@2x.png" width="152" />
+    <icon height="29" platform="ios" src="res/icons/ios/icon-small.png" width="29" />
+    <icon height="58" platform="ios" src="res/icons/ios/icon-small@2x.png" width="58" />
+    <icon height="87" platform="ios" src="res/icons/ios/icon-small@3x.png" width="87" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="false" />

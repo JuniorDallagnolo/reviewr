@@ -6,6 +6,7 @@ var APP = (function () {
     let picTaken = false; //Flag to see if the user has taken a Picture
     let stars = document.querySelectorAll('.star'); //Selector for clickable stars
     let review = {};
+    let appPath;
 
     //Function that generates the List view Page
     function genList() {
@@ -46,6 +47,7 @@ var APP = (function () {
             let p = document.createElement('p');
             p.textContent = `${rev.description}`;
             li.appendChild(p);
+            //Creating the Star Rating
             let rating = rev.rating;
             let ratingdiv = document.createElement('div');
             while (rating > 0) {
@@ -56,6 +58,7 @@ var APP = (function () {
                 rating--;
             }
             li.appendChild(ratingdiv);
+            //Creates the Action Right button
             let span = document.createElement('span');
             span.classList.add('action-right');
             span.classList.add('icon');
@@ -63,6 +66,7 @@ var APP = (function () {
             span.id = 'js-more';
             span.addEventListener('click', nav);
             li.appendChild(span);
+            //Apending the Complete li to the ul
             ul.appendChild(li);
         });
         return ul;
@@ -86,6 +90,7 @@ var APP = (function () {
         }, fail, opts);
     }
 
+    //GENERAL CALLBACK FUNCTION TO ALL ERRORS
     function fail(err) {
         console.log(err);
         overFunc('error');
@@ -98,30 +103,47 @@ var APP = (function () {
         review.description = document.getElementById('js-desc').value;
         review.rating = document.querySelector('.stars').getAttribute('data-rating');
         localStorage.setItem(review.id, JSON.stringify(review));
-         //Save IMG to permament folder
+        //Save IMG to permament folder
         window.resolveLocalFileSystemURL(review.img, moveToPerm, fail);
     }
 
+    //Function that Uses a lot of callbacks to move the file into permament Storage
     function moveToPerm(entry) {
         let imgName = review.id + ".jpg";
-        let appFolder = "ReviewR";
+        entry.copyTo(appPath, imgName, (file) => {
+            review.img = file.nativeURL;
+            window.cordova.plugins.imagesaver.saveImageToGallery(file.nativeURL, () => {
+                console.log("Image saved to Gallery");
+            }, fail);
+            localStorage.setItem(review.id, JSON.stringify(review));
+        }, fail);
+    }
+
+    //It gest the ID from detail view and gets passed here, the ID == imageName
+    function deleteFromPerm (id) {
+        let imgName = id + ".jpg";
+        window.resolveLocalFileSystemURL(appPath.nativeURL, function(dir){
+            //console.log(dir);
+            dir.getFile(imgName, {create:false}, function(fileEntry){
+                fileEntry.remove(function(){
+                    console.log("Deleted");
+                }, fail, fail);
+            }, fail);
+        }, fail);
+    }
+
+    //Creates the app folder for images when it is initialized
+    function createFolderStructure() {
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSys) {
-                //The folder is created if doesn't exist
-                fileSys.root.getDirectory(appFolder, {
-                        create: true,
-                        exclusive: false
-                    },
-                    function (dir) {
-                        entry.copyTo(dir, imgName, (final) => {
-                            review.img = final.nativeURL;
-                            window.cordova.plugins.imagesaver.saveImageToGallery(final.nativeURL,()=>{
-                                console.log("Image saved to Gallery");
-                            }, fail);
-                            localStorage.setItem(review.id, JSON.stringify(review));
-                        }, fail);
-                    }, fail);
-            },
-            fail);
+            //The folder is created if doesn't exist
+            fileSys.root.getDirectory('ReviewR', {
+                    create: true,
+                    exclusive: false
+                },
+                function (dir) {
+                    appPath = dir;
+                }, fail);
+        }, fail);
     }
 
     //Function to Generate the Details View
@@ -139,6 +161,7 @@ var APP = (function () {
         card.appendChild(img);
         let rating = review.rating;
         let ratingdiv = document.createElement('div');
+        ratingdiv.classList.add('center');
         while (rating > 0) {
             let starspan = document.createElement('span');
             starspan.classList.add('star');
@@ -218,6 +241,7 @@ var APP = (function () {
                 break;
                 //When user deletes a review in the details page
             case 'js-delete':
+                deleteFromPerm(document.querySelector('.card').getAttribute('id'));
                 localStorage.removeItem(document.querySelector('.card').getAttribute('id'));
                 overFunc('delete');
                 genList();
@@ -267,9 +291,22 @@ var APP = (function () {
         stars.forEach(function (star) {
             star.addEventListener('click', setRating);
         });
-        genList();
+        createFolderStructure();
+        setTimeout(() => {
+            genList();
+        }, 100);
     }
 
+    //Deprecated Function in case I wanted to use auto expanding text area
+    /* function autoSize(){
+        let el = this;
+        setTimeout(function(){
+          el.style.cssText = 'height:auto; padding:0';
+          el.style.cssText = 'height:' + el.scrollHeight + 'px';
+        },0);
+      } */
+
     document.addEventListener('deviceready', init);
+    // document.querySelector('textarea').addEventListener('keydown', autoSize);
 
 })();
